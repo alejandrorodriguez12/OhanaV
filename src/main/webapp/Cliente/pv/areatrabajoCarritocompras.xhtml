@@ -24,29 +24,36 @@
                                 <th>Precio</th>
                                 <th>Cantidad</th>                       
                                 <th>Total</th>                       
-                                <th>Acciones</th>                       
+                                <th>Acciones</th> 
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="c" items="${Carrito}"> 
                                 <tr class="text-center tr">
                                     <td></td>                                   
                                     <td>
-                                        <img src="" width="130" height="110">
+                                        <img src="" width="130" height="110"/>
                                     </td>
                                     <td></td>
                                     <td></td>
                                     <td>        
-                                        <input type="hidden" id="item1" value="">
-                                        <input type="number" min="1" max="10"  id="Cant" class=" form-control text-center" value="">
+                                        <input type="hidden" id="item1" value=""/>
+                                        <input type="number" min="1" max="10"  id="Cant" class=" form-control text-center" value=""/>
                                     </td>   
                                     <td></td>                           
                                     <td class="text-center">                                         
-                                        <input type="hidden" id="item2" value="">
-                                        <a id="deleteItem" href="#" class="btn"><i class="fas fa-trash-alt"></i></a>                                            
+                                        <input type="hidden" id="item2" value=""/>
+                                        <a id="deleteItem" href="" class="btn"><i class="fas fa-trash-alt"></i></a>                                            
                                     </td>                           
                                 </tr>
-                            </c:forEach>
                         </tbody>
                     </table>                    
                 </div>
