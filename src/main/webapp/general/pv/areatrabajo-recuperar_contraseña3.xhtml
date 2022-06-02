@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+      <section class="form-registro">
+        <form action="iniciar_sesion.xhtml" class="row g-3 needs-validation" novalidate="">
+        <h4>Reestablecer contraseña</h4>        
+        <h6>Por favor digita tu nueva contraseña:</h6>
+        <ul>
+            <li type="square" >Debe tener almenos 8 caracteres</li>
+            <li type="square" >Debe tener almenos una letra en mayuscula y minuscula</li>
+            <li type="square" >Debe terner almenos un numero</li>
+        </ul>
+        
+        <input class="controls" type="password" name="contraseña" id="contraseña" placeholder="Nueva contarseña" required="" minlength="8"/>
+        <div class="invalid-feedback">Por favor digite su nueva contraseña</div>                
+        <input class="botons" type="submit" value="Continuar"/>
+
+    </form>
+    </section>
+    <br/>
+    </ui:composition>
+</html>
+

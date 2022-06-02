@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+<section class="form-registro" style="width: 80%" >
+    <h:form class="row g-3 needs-validation" >
+            <h4>Crear cuenta</h4>
+            <h:inputText value="#{personaSession.perCre.primerNombre}" class="controls" id="PNombre" html5:placeholder="Primer nombre" required="true" requiredMessage="Digite un nombre valido" style="width: 48%" />
+            <h:message style="color: red" for="PNombre"></h:message>
+            <h:inputText value="#{personaSession.perCre.segundoNombre}" class="controls" id="SNombre" html5:placeholder="Segundo nombre" requiredMessage="Digite un nombre valido" style="width: 48%; margin-left: 3%"/>
+            <h:message style="color: red" for="SNombre"></h:message>
+            <h:inputText value="#{personaSession.perCre.primerApellido}" class="controls" id="PApellido" html5:placeholder="Primer apellido" required="true" requiredMessage="Digite un apellido valido" style="width: 48%"/>
+            <h:message style="color: red" for="PApellido"></h:message>
+            <h:inputText value="#{personaSession.perCre.segundoApellido}" class="controls" id="SApellido" html5:placeholder="Segundo apellido" required="true" requiredMessage="Digite un apellido valido" style="width: 48%; margin-left: 3%"/>
+            <h:message style="color: red" for="SApellido"></h:message>             
+            <h:inputText value="#{personaSession.perCre.correo}" class="controls" html5:type="email" id="CorreoElectronico" html5:placeholder="Correo electronico" required="true" requiredMessage="Digite un correo electrónico valido" style="width: 48%"/>
+            <h:message style="color: red" for="CorreoElectronico"></h:message>           
+            <h:inputText value="#{personaSession.perCre.fechaDeNacimiento}" class="controls" html5:type="date" id="FechaDeNacimiento" html5:placeholder="Fecha de nacimiento" required="true" requiredMessage="Digite una fecha de nacimiento valida" style="width: 48%; margin-left: 3%">
+                <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+            </h:inputText>
+            <h:message style="color: red" for="FechaDeNacimiento"></h:message>            
+            <h:inputText value="#{personaSession.perCre.numeroCelular}" class="controls" html5:type="number" id="Celular" html5:placeholder="Número de celular" required="true" requiredMessage="Digite un número de celular valido" style="width: 48%"/>
+            <h:message style="color: red" for="Celular"></h:message> 
+            <h:inputText value="#{personaSession.perCre.numeroCedula}" class="controls" html5:type="number" id="Cedula" html5:placeholder="Cedula" required="true" requiredMessage="Digite una cedula valida" style="width: 48%; margin-left: 3%"/>
+            <h:message style="color: red" for="Cedula"></h:message> 
+            <h:inputSecret value="#{personaSession.perCre.contrasenia}" class="controls"  id="Contrasenia" html5:placeholder="Contraseña" required="true" requiredMessage="Digite una contraseña valida" style="width: 48%"/>
+            <h:message style="color: red" for="Contrasenia"></h:message>          
+            <p><h:selectBooleanCheckbox required="true"></h:selectBooleanCheckbox> Estoy de acuerdo con <a href="terminos_y_condiciones.xhtml">Terminos y condiciones</a></p>          
+            <h:commandButton action="#{personaSession.guardar()}" class="botons" type="submit" value="Registrar"/>
+
+            <p><a href="iniciar_sesion.xhtml">Ya tengo cuenta</a></p>
+        </h:form>
+        </section> <br/>
+    </ui:composition>
+</html>
+

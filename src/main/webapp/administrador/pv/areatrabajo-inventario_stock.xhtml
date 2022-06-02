@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>  
+
+        <main>
+            <p:fieldset style="width: 80%; margin-left: 33%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%" toggleable="true">
+
+                <h:form>
+                    <p:dataTable id="stoc" var="prosa" value="#{inventarioSession.leerTodo()}"  class="table" style=" overflow: scroll;height: 300px">
+
+                        <p:column headerText="Id producto" filterBy="#{prosa.idProducto.idProducto}" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.idProducto.idProducto}"/>
+                        </p:column>
+                        <p:column width="100px" headerText="Empresa" filterBy="#{prosa.nit.nombreEmpresa}" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.nit.nombreEmpresa}"/>
+                        </p:column>
+                        <p:column headerText="Precio unitario" filterBy="#{prosa.precioUnitario}" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.precioUnitario}"/>
+                        </p:column>
+                        <p:column headerText="Precio venta" filterBy="#{prosa.precioVenta}" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.precioVenta}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad Stock" filterBy="#{prosa.cantidadStock}" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.cantidadStock}"/>
+                        </p:column>
+                        <p:column width="100px" headerText="Fecha ingreso" filterBy="#{prosa.fechaIngreso}" filterOptions="true" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.fechaIngreso}"><f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime></h:outputText>
+                        </p:column>
+                        <p:column headerText="Lote" filterBy="#{prosa.lote}" filterMatchMode="contains">
+                            <h:outputText value="#{prosa.lote}"/>
+                        </p:column>
+                        <p:column width="80px" headerText="Editar" exportable="false">
+                            <p:commandLink action="#{inventarioSession.cargarStock(prosa)}" class="btn btn-outline-danger" value="Editar">
+
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Eliminar" exportable="false">
+                            <p:commandLink  action="#{inventarioSession.removerStock(prosa)}" class="btn btn-outline-danger"  value="Eliminar">
+
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                    
+                    <div class="btn-group" role="group" aria-label="Basic example" style="margin-left: 78%">
+                        <a href="#{request.contextPath}/administrador/inventario_stock-agregar.xhtml" >
+                            <button  type="button" class="btn btn-outline-danger">Agregar</button>
+                        </a>
+                    </div>
+                    <div align="center">
+                        <h:commandLink style="margin-right: 2%">
+                            <h:graphicImage url="../assets/img/Excel.jpg" width="50px" height="70px"/>
+                            <p:dataExporter type="xls" target="stoc" fileName="StockExcel"/>
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <h:graphicImage url="../assets/img/pdf.png" width="50px" height="70px"/>
+                            <p:dataExporter type="pdf" target="stoc" fileName="Stockpdf"/>
+                        </h:commandLink>
+                    </div>
+                </h:form>  
+
+            </p:fieldset>
+        </main>
+
+    </ui:composition>
+</html>
+

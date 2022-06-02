@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>  
+
+        <legend style="font-family: fantasy;font-size: 200%; margin-left: 44%">Pedidos</legend>
+        <h:form>
+            <main style="overflow: scroll; height:300px;">
+                <p:dataTable id="pedid" var="ped" value="#{ventasSession.leerTodo()}" >
+
+                    <p:column  headerText="Fecha" filterBy="#{ped.fechaVenta}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.fechaVenta}">
+                            <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Código" filterBy="#{ped.numeroDeCompra}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.numeroDeCompra}"/>
+                    </p:column>
+                    <p:column  headerText="Producto" filterBy="#{ped.idProducto.idTipoProducto.nombreProducto}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.idProducto.idTipoProducto.nombreProducto}"/>
+                    </p:column>
+                    <p:column  headerText="Cantidad" filterBy="#{ped.cantidadProducto}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.cantidadProducto}"/>
+                    </p:column>
+                    <p:column  headerText="Medio de pago" filterBy="#{ped.idMediosDePago.medioDePago}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.idMediosDePago.medioDePago}"/>
+                    </p:column>
+                    <p:column headerText="Dirección" filterBy="#{ped.idCliente.personas.tipoDeVia} #{ped.idCliente.personas.numeroVia}#{ped.idCliente.personas.letraVia} #{ped.idCliente.personas.numero} #{ped.idCliente.personas.letra} #{ped.idCliente.personas.numeroApto}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.idCliente.personas.tipoDeVia} #{ped.idCliente.personas.numeroVia}#{ped.idCliente.personas.letraVia} #{ped.idCliente.personas.numero} #{ped.idCliente.personas.letra} #{ped.idCliente.personas.numeroApto}"/>
+                    </p:column>
+                    <p:column headerText="Estado">
+                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 1 }">
+                            <h:commandButton  type="button" class="btn btn-primary">En Proceso</h:commandButton>
+                        </c:if>
+                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 2}">
+                            <h:commandButton  type="button" class="btn btn-warning">Enviado</h:commandButton>
+                        </c:if>
+                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 3}">
+                            <h:commandButton type="button" class="btn btn-success">Entregado</h:commandButton>
+                        </c:if>
+                        <c:if  test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 4}">
+                            <h:commandButton  type="button" class="btn btn-danger">Cancelado</h:commandButton>
+                        </c:if>  
+                    </p:column>
+                    <p:column  headerText="Cambiar estado">
+                        <h:commandButton action="#{ventasSession.cambiarEstado(ped)}" class="btn btn-outline-danger" value="Cambiar"></h:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+            </main>
+            <div align="center">
+                <h:commandLink style="margin-right: 2%">
+                    <h:graphicImage url="../assets/img/Excel.jpg" width="50px" height="70px"/>
+                    <p:dataExporter type="xls" target="pedid" fileName="PedidosExcel"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <h:graphicImage url="../assets/img/pdf.png" width="50px" height="70px"/>
+                    <p:dataExporter type="pdf" target="pedid" fileName="Pedidospdf"/>
+                </h:commandLink>
+            </div>
+        </h:form> 
+
+    </ui:composition>
+</html>
+

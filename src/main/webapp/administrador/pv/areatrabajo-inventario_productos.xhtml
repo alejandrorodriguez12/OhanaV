@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>  
+
+
+
+        <main>
+            <fieldset style="width: 80%; margin-left: 33%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%">
+
+
+                <div class="table" style="overflow: scroll;height: 300px">
+                    <table border="1" id="produ">
+                        <tr>
+                            
+                            <th width="20%">Nombre Producto</th>  
+
+                            <th width="20%">Nombre</th>
+
+                            <th width="20%">Foto</th>
+
+                            <th width="20%">Descripcion</th>
+                            
+                            <th width="20%">Precio</th>
+                            
+                            <th width="20%">Stock</th>
+
+                            <th width="20%">Modificar</th>
+
+                            <th width="20%">Eliminar</th>
+
+                        </tr>
+                        <h:form>
+                            <c:forEach var="prod" items="#{productoSession.leerTodo()}">
+
+                                <tr>
+                                    <td>#{prod.idTipoProducto.nombreProducto}</td>
+
+                                    <td>#{prod.nombres}</td>
+
+                                    <td>#{prod.foto};</td>
+
+                                    <td>#{prod.descripcion}</td>
+                                    
+                                    <td>#{prod.precio}</td>
+                                    
+                                    <td>#{prod.stock}</td>
+
+                                    <td><h:commandButton action="#{productoSession.cargaProducto(prod)}" class="btn btn-outline-danger" value="Editar"></h:commandButton></td>
+
+                                    <td><h:commandButton action="#{productoSession.removerproducto(prod)}" class="btn btn-outline-danger"  value="Eliminar"/></td>
+                                </tr>
+                            </c:forEach>
+
+                        </h:form>   
+
+                    </table>
+                </div>
+
+                <div class="btn-group" role="group" aria-label="Basic example" style="margin-left: 78%">
+                    <a href="#{request.contextPath}/administrador/inventario_agregarproductos.xhtml" >
+                        <button  type="button" class="btn btn-outline-danger">Agregar</button>
+                    </a>
+                    <button onclick="ExportToExcel('produ')" type="button" class="btn btn-outline-danger">Exportar</button>
+                </div>
+            </fieldset>
+
+        </main>
+
+
+    </ui:composition>
+</html>
+

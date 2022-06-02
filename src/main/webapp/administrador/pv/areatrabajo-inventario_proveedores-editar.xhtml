@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>  
+        <main>  
+                <section class="form-registro" style="width: 60%; margin-left: 40%; margin-right: 10%; margin-bottom: 3%">
+                    <h:form>
+                        <h4 align="center" style="font-family: fantasy">Editar Proveedor</h4>
+                        <h:inputText value="#{proveedorSession.provTem.nit}" class="controls" id="nit" html5:placeholder="nit" required="" style="margin-right: 25px; width: 40%"/>
+                        <h:inputText value="#{proveedorSession.provTem.nombreEmpresa}" class="controls" id="nombreEmpresa" html5:placeholder="nombreEmpresa" required="" style="margin-right: 25px; width: 40%"/>
+                        <h:inputText value="#{proveedorSession.provTem.producto}" class="controls" id="producto" html5:placeholder="producto" required="" style="margin-right: 25px; width: 40%"/>
+                        <h:inputText value="#{proveedorSession.provTem.numeroCedula}" class="controls" id="numeroCedula" html5:placeholder="numeroCedula" required="" style="margin-right: 25px; width: 40%"/>
+                        <h:inputText value="#{proveedorSession.provTem.nombreProveedor}" class="controls" id="nombreProveedor" html5:placeholder="nombreProveedor" required="" style="margin-right: 25%; width: 40%"/>
+                        <h:commandButton class="botons" action="#{proveedorSession.editarProveedor()}" value="Editar"/>
+
+                    </h:form>
+                </section>
+
+        </main>
+    </ui:composition>
+</html>
+

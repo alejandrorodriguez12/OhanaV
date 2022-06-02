@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>  
+        <legend style="font-family: fantasy; font-size: 200%; margin-left: 45%">Clientes</legend>
+        <h:form>
+            <main style="overflow: scroll; height:300px;">
+                <p:dataTable id="Clientes" var="cli" value="#{clienteSession.leerTodo()}"  class="table">
+
+                    <p:column headerText="Id cliente" filterBy="#{cli.idClientes}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.idClientes}"/>
+                    </p:column>
+                    <p:column width="100px" headerText="Primer nombre" filterBy="#{cli.personas.primerNombre}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.primerNombre}"/>
+                    </p:column>
+                    <p:column headerText="Segundo nombre" filterBy="#{cli.personas.segundoNombre}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.segundoNombre}"/>
+                    </p:column>
+                    <p:column headerText="Primer apellido" filterBy="#{cli.personas.primerApellido}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.primerApellido}"/>
+                    </p:column>
+                    <p:column headerText="Segundo apellido" filterBy="#{cli.personas.segundoApellido}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.segundoApellido}"/>
+                    </p:column>
+                    <p:column headerText="Correo" filterBy="#{cli.personas.correo}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.correo}"/>
+                    </p:column>
+                    <p:column headerText="Número celular" filterBy="#{cli.personas.numeroCelular}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.numeroCelular}"/>
+                    </p:column>
+                    <p:column headerText="Dirección" filterBy="#{cli.personas.tipoDeVia} #{cli.personas.numeroVia}#{cli.personas.letraVia} #{cli.personas.numero} #{cli.personas.letra} #{cli.personas.numeroApto}" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.tipoDeVia} #{cli.personas.numeroVia}#{cli.personas.letraVia} #{cli.personas.numero} #{cli.personas.letra} #{cli.personas.numeroApto}"/>
+                    </p:column>
+                    <p:column width="100px" headerText="Fecha nacimiento" filterBy="#{cli.personas.fechaDeNacimiento}" filterOptions="true" filterMatchMode="contains">
+                        <h:outputText value="#{cli.personas.fechaDeNacimiento}"><f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime></h:outputText>
+                    </p:column>
+                    
+                    <p:column headerText="Estado">
+                        <c:if test="#{cli.estados == 1}">
+                            <h:commandButton class="btn btn-success" value="A"></h:commandButton>
+                        </c:if>
+                        <c:if test="#{cli.estados == 0}">
+                            <h:commandButton class="btn btn-warning" value="I"></h:commandButton>
+                        </c:if>
+                    </p:column>
+                        
+                    <p:column width="80px" headerText="Cambiar estado" exportable="false">
+                        <h:commandButton action="#{clienteSession.cambiarEstado(cli)}" class="btn btn-outline-danger" value="Cambiar"></h:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+            </main>
+            <div align="center">
+                <h:commandLink style="margin-right: 2%">
+                    <h:graphicImage url="../assets/img/Excel.jpg" width="50px" height="70px"/>
+                    <p:dataExporter type="xls" target="Clientes" fileName="ClientesExcel"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <h:graphicImage url="../assets/img/pdf.png" width="50px" height="70px"/>
+                    <p:dataExporter type="pdf" target="Clientes" fileName="Clientespdf"/>
+                </h:commandLink>
+            </div>
+        </h:form>  
+    </ui:composition>
+</html>
+

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition>
+            <div class="container-1">
+        <span class="icon"><i class="fa fa-search"></i></span>
+       
+    <header style="font-size: 25px">
+      <a href="#{request.contextPath}\Cliente\ClientePaginaprincipal.xhtml">
+          <img class="logo" src="#{request.contextPath}\assets\img\Logo.nuevo.jpeg" alt="logoOhana"></img>
+      </a>
+      <nav class="li">
+        <li class="lo"><a href="#{request.contextPath}\Cliente\ComprasCliente.xhtml" class="al">Tus compras</a></li>
+        <li class="lo"><a href="#{request.contextPath}\Cliente\DatosCliente.xhtml" class="al">Datos personales</a></li>
+        <li class="lo"><a href="#{request.contextPath}\Cliente\MediosPagos.xhtml" class="al">Metodos de pago</a></li> 
+        <li class="lo"><a href="#{request.contextPath}\general\ohana.xhtml" class="al">Cerrar sesión</a></li>
+      </nav>
+    </header>
+            </div>
+    </ui:composition>
+</html>
+

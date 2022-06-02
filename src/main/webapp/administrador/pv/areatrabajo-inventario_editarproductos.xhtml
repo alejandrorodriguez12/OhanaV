@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>  
+        <main>  
+            <section class="form-registro" style="width: 60%; margin-left: 40%; margin-right: 10%; margin-bottom: 3%">
+                <h:form>
+                    <h:messages style="color: red"></h:messages>
+                    <h4 align="center" style="font-family: fantasy">Editar producto</h4>
+                    <h:outputLabel for="TipoProducto" style="margin-right: 80%; font-family: fantasy;font-size: 140%;position: relative">Producto</h:outputLabel>
+                    <h:outputLabel for="talla" style="margin-right: 40%; font-family: fantasy;font-size: 140%;position: absolute; right: -130px ">Talla</h:outputLabel><br/>
+
+                    <h:selectOneMenu required="true" requiredMessage="Ingresar el tipo del producto" value="#{productoSession.protem.idTipoProducto.nombreProducto}" class="controls" style="width: 40%; margin-right: 7%"  id="TipoProducto" html5:placeholder="TipoProducto">
+                        <f:selectItem noSelectionOption="Producto"></f:selectItem>
+                        <f:selectItem itemLabel="Camisetas" itemValue="Camisetas"></f:selectItem>
+                        <f:selectItem itemLabel="Gorras" itemValue="Gorras"></f:selectItem>
+                        <f:selectItem itemLabel="Mugs" itemValue="Mugs"></f:selectItem>
+                        
+                                           <h:inputText required="true" value="#{productoSession.prodagr.nombres}" class="controls" style="width: 40%; margin-right: 8%" id="Nombre" html5:placeholder="Nombre"></h:inputText>
+                    
+                    <h:graphicImage value="#{productoSession.prodagr.foto}" class="controls" style="width: 40%; margin-right: 8%" id="Foto" html5:placeholder="Foto"></h:graphicImage>
+                    
+                    <h:inputText required="true" value="#{productoSession.prodagr.descripcion}" class="controls" style="width: 40%; margin-right: 8%" id="Descripcion" html5:placeholder="Descripcion"></h:inputText>
+                    
+                    <h:inputText required="true" value="#{productoSession.prodagr.precio}" class="controls" style="width: 40%; margin-right: 8%" id="Precio" html5:placeholder="Precio"></h:inputText>
+                    
+                    <h:inputText required="true" value="#{productoSession.prodagr.stock}" class="controls" style="width: 40%; margin-right: 8%" id="Stock" html5:placeholder="Stock"></h:inputText>
+
+                    <h:commandButton class="botons" action="#{productoSession.agregarProducto()}" value="Agregar"/>
+                    </h:selectOneMenu>
+
+
+                    <h:commandButton class="botons" action="#{productoSession.editarProducto()}" html5:type="submit" value="Editar"/>
+                </h:form>
+            </section>
+
+        </main>
+    </ui:composition>
+</html>
+

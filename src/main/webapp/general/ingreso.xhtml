@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/ohana.css"/>
+        <title>Ingreso</title>
+    </h:head>
+    <h:body style="width: 100%;">
+        <header >
+            <a href="Ohana1.html">
+                <img class="logo" src="#{request.contextPath}/assets/img/Logo.nuevo.jpeg" alt="logoOhana" style="margin-left: 38%"/>
+            </a>
+        </header>
+        <nav style="display:flex;">
+            <section class="form-registro">
+                <form action="#{request.contextPath}/Cliente/ClientePaginaprincipal.xhtml">
+                    <h4 align="center">CLIENTE</h4>
+                    <input class="botons" type="submit" value="Entrar"/>
+                </form>
+            </section>
+            <section class="form-registro">
+                <form action="#{request.contextPath}/administrador/interfaztrabajadores.xhtml">
+                    <h4 align="center">TRABAJADOR</h4>
+                    <input class="botons" type="submit" value="Entrar"/>
+                </form>
+            </section>	
+        </nav>  
+    </h:body>
+</html>
+

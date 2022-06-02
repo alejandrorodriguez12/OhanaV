@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>  
+        <main>
+            <section class="form-registro" style="width: 60%; margin-left: 40%; margin-right: 10%; margin-bottom: 3%">
+                <h:form>
+                    <h4 align="center" style="font-family: fantasy">Editar Stock</h4>
+                    <h:selectOneMenu class="controls" value="#{inventarioSession.stockTem.idProducto.idTipoProducto.idTipoProducto}" id="idProducto" html5:placeholder="Nombre Producto" required="true" requiredMessage="Selecione el nombre de un producto" style="margin-right: 10%; width: 40%">
+                        <f:selectItems var="pro" value="#{inventarioSession.listaProductos}" itemLabel="#{pro.nombreProducto}" itemValue="#{pro.idTipoProducto}"></f:selectItems>                    
+                    </h:selectOneMenu>
+                    <h:selectOneMenu class="controls" value="#{inventarioSession.stockTem.nit.nit}" id="Proveedor" html5:placeholder="Proveedor" required="" style="margin-right: 25px; width: 40%">
+                        <f:selectItems var="prov" value="#{inventarioSession.listaProveedores}" itemLabel="#{prov.nombreEmpresa}" itemValue="#{prov.nit}"></f:selectItems>                    
+                    </h:selectOneMenu>
+                    <h:inputText value="#{inventarioSession.stockTem.precioUnitario}" class="controls"  id="precioUnitario" html5:placeholder="Precio Unitario" required="" style="margin-right: 10%; width: 40%"/>
+                    <h:inputText value="#{inventarioSession.stockTem.precioVenta}" class="controls"  id="precioVenta" html5:placeholder="Precio Venta" required="" style="margin-right: 25px; width: 40%"/>
+                    <h:inputText value="#{inventarioSession.stockTem.cantidadStock}" class="controls"  id="cantidadEntrante" html5:placeholder="Cantidad en stock" required="" style="margin-right: 10%; width: 40%"/>
+                    <h:inputText value="#{inventarioSession.stockTem.fechaIngreso}" class="controls"  id="fechaIngreso" html5:placeholder="Fecha de ingreso" required="" style="margin-right: 25px; width: 40%">
+                        <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>                        
+                    </h:inputText>
+                    <h:inputText value="#{inventarioSession.stockTem.lote}" class="controls"  id="lote" html5:placeholder="Lote" required="" style="margin-right: 28%; width: 40%"/>
+                    <h:commandButton action="#{inventarioSession.editarStock()}" class="botons" type="submit" value="Editar"/>
+
+                </h:form>
+            </section>
+        </main>
+    </ui:composition>
+</html>
+

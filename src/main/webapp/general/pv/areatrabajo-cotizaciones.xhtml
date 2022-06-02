@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+      <section class="form-registro">
+        <form class="row g-3 needs-validation" novalidate="">
+        <h4>Cotización</h4>
+        <input class="controls" type="text" name="Nombres" id="Nombres" placeholder="Nombre" required=""/>
+        <div class="invalid-feedback">Digite sus nombres</div>
+        <input class="controls" type="text" name="Apellidos" id="Apellidos" placeholder="Apellidos" required=""/>
+        <div class="invalid-feedback">Digite su apellidos</div>            
+        <input class="controls" type="email" name="Correo electronico" id="Correo electrónico" placeholder="Correo electronico" required=""/>
+        <div class="invalid-feedback">Digite un correo</div>                        
+        <input class="controls" type="text" name="Celular" id="Celular" placeholder="Número de celular"/>
+        <div class="invalid-feedback">Digite un numero valido</div>            
+                    
+        <textarea class="controls" name="Cotizaciones" id="Cotizaciones" cols="107" rows="5" required="">
+          
+        </textarea>        
+        <input class="botons" type="submit" value="Enviar"/>
+
+    </form>
+    </section>
+    <br/>
+    <br/>
+    </ui:composition>
+</html>
+
