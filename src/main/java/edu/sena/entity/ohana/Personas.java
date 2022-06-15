@@ -12,7 +12,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -111,14 +110,16 @@ public class Personas implements Serializable {
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula"),
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula")}, inverseJoinColumns = {
         @JoinColumn(name = "idRol", referencedColumnName = "idRol")})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private Collection<Roles> rolesCollection;
-    @OneToMany(mappedBy = "personas", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "personas")
     private Collection<Encargadosdelinventario> encargadosdelinventarioCollection;
     @JoinColumn(name = "numeroLocalidad", referencedColumnName = "numeroLocalidad")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Localidades numeroLocalidad;
-    @OneToMany(mappedBy = "personas", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "personas")
+    private Collection<Carritodecompras> carritodecomprasCollection;
+    @OneToMany(mappedBy = "personas")
     private Collection<Clientes> clientesCollection;
 
     public Personas() {
@@ -279,6 +280,15 @@ public class Personas implements Serializable {
 
     public void setNumeroLocalidad(Localidades numeroLocalidad) {
         this.numeroLocalidad = numeroLocalidad;
+    }
+
+    @XmlTransient
+    public Collection<Carritodecompras> getCarritodecomprasCollection() {
+        return carritodecomprasCollection;
+    }
+
+    public void setCarritodecomprasCollection(Collection<Carritodecompras> carritodecomprasCollection) {
+        this.carritodecomprasCollection = carritodecomprasCollection;
     }
 
     @XmlTransient

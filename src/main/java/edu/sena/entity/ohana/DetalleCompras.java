@@ -9,7 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -45,10 +44,10 @@ public class DetalleCompras implements Serializable {
     @Column(name = "PrecioCompra")
     private Double precioCompra;
     @JoinColumn(name = "idCompras", referencedColumnName = "idCompras")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Compras idCompras;
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Producto idProducto;
 
     public DetalleCompras() {

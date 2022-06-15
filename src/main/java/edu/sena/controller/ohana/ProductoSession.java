@@ -9,6 +9,7 @@ import edu.sena.entity.ohana.Productos;
 import edu.sena.entity.ohana.Tipoproductos;
 import edu.sena.facade.ohana.ProductosFacadeLocal;
 import edu.sena.facade.ohana.TipoproductosFacadeLocal;
+import edu.sena.facade.ohana.CarritodecomprasFacadeLocal;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
@@ -37,6 +38,8 @@ public class ProductoSession implements Serializable {
     ProductosFacadeLocal productosFacadeLocal;
    @EJB
     TipoproductosFacadeLocal tipoproductosFacadeLocal;
+   @EJB
+    CarritodecomprasFacadeLocal carritodecomprasFacadeLocal;
    
    private int idProducto;
    private int idTipoProducto;
@@ -187,5 +190,19 @@ public class ProductoSession implements Serializable {
         this.idTipoProducto = idTipoProducto;
     }
 
-    
+    public void addItemCart(int idProducto, int numeroCedula) {             
+        if (carritodecomprasFacadeLocal.agregarCarrito(numeroCedula, idProducto) > 0) {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + " 'Producto',"
+                    + " 'Agregado con exito', "
+                    + " 'success'"
+                    + ")");
+        } else {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + " 'Producto',"
+                    + " 'No se pudo agregar', "
+                    + " 'error'"
+                    + ")");
+        }
+    }
 }

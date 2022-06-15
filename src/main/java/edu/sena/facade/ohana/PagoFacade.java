@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Acer
+ * @author josea
  */
 @Stateless
 public class PagoFacade extends AbstractFacade<Pago> implements PagoFacadeLocal {

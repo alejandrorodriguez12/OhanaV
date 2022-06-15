@@ -37,23 +37,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <c:forEach items="#{carritoCompras.findByNumeroCedula(personaSession.perLogin.numeroCedula)}" var="item">
+                            <h:form class="row g-3 needs-validation" >
                                 <tr class="text-center tr">
-                                    <td></td>                                   
+                                    <td>#{item.productId.nombres}</td>                                   
                                     <td>
-                                        <img src="" width="130" height="110"/>
+                                        <img src="../assets/img/#{item.productId.idProducto}.png" width="130" height="110"/>
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>        
-                                        <input type="hidden" id="item1" value=""/>
-                                        <input type="number" min="1" max="10"  id="Cant" class=" form-control text-center" value=""/>
-                                    </td>   
-                                    <td></td>                           
-                                    <td class="text-center">                                         
-                                        <input type="hidden" id="item2" value=""/>
-                                        <a id="deleteItem" href="" class="btn"><i class="fas fa-trash-alt"></i></a>                                            
+                                    <td>#{item.productId.descripcion}</td>
+                                    <td>#{item.productId.precio}</td>
+                                    <td>#{item.cantidad}</td>
+                                    <td>#{item.productId.precio * item.cantidad}</td>   
+                                    <td align="left"><h:commandButton action="#{carritoCompras.remove(item)}" class="btn-danger" value="Eliminar"/>    
                                     </td>                           
                                 </tr>
+                            </h:form>                               
+                            </c:forEach>
                         </tbody>
                     </table>                    
                 </div>
@@ -63,12 +62,6 @@
                             Generar Compra
                         </div>
                         <div class="card-body">
-                            <label>Subtotal:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h5"> 0</i></a>
-                            <label>Precio Envio:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h5"> 0.00</i></a>
-                            <label>Descuento:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h5"> 0.00</i></a>
                             <label>Total a Pagar:</label>
                             <a class="form-control text-center"><i class="fas fa-dollar-sign h4 primary">0</i></a>
                         </div>

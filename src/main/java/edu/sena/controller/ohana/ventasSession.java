@@ -50,12 +50,10 @@ private ArrayList<Estadodeenvios> ListaEstadoEnvio = new ArrayList<>();
     
             public void cambiarEstado(Estadodeenvios cliE){
         try {
-            if(cliE.getIdEstadoDeEnvios().toString().equals("1")){
-                cliE.setIdEstadoDeEnvios(Integer.parseInt("2"));
-            }else if(cliE.getIdEstadoDeEnvios().toString().equals("2")){
-                cliE.setIdEstadoDeEnvios(Integer.parseInt("3"));
-            }else if(cliE.getIdEstadoDeEnvios().toString().equals("3")){
-                cliE.setIdEstadoDeEnvios(Integer.parseInt("4"));
+            switch(cliE.getIdEstadoDeEnvios()){
+                case 1: cliE.setIdEstadoDeEnvios(Integer.parseInt("2"));
+                case 2: cliE.setIdEstadoDeEnvios(Integer.parseInt("3"));
+                case 3: cliE.setIdEstadoDeEnvios(Integer.parseInt("4"));
             }
             estadodeenviosFacadeLocal.edit(cliE);
             PrimeFaces.current().executeScript("Swal.fire("

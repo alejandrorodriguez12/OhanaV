@@ -10,7 +10,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,14 +44,16 @@ public class Clientes implements Serializable {
     private Integer idClientes;
     @Column(name = "estados")
     private Short estados;
-    @OneToMany(mappedBy = "idCliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idCliente")
+    private Collection<Carritodecompras> carritodecomprasCollection;
+    @OneToMany(mappedBy = "idCliente")
     private Collection<Cotizaciones> cotizacionesCollection;
-    @OneToMany(mappedBy = "idCliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idCliente")
     private Collection<Ventas> ventasCollection;
     @JoinColumns({
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula"),
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula")})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Personas personas;
 
     public Clientes() {
@@ -76,6 +77,15 @@ public class Clientes implements Serializable {
 
     public void setEstados(Short estados) {
         this.estados = estados;
+    }
+
+    @XmlTransient
+    public Collection<Carritodecompras> getCarritodecomprasCollection() {
+        return carritodecomprasCollection;
+    }
+
+    public void setCarritodecomprasCollection(Collection<Carritodecompras> carritodecomprasCollection) {
+        this.carritodecomprasCollection = carritodecomprasCollection;
     }
 
     @XmlTransient

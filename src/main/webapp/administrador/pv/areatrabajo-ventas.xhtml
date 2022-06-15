@@ -23,11 +23,11 @@
                             <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
                         </h:outputText> 
                     </p:column>
-                        <p:column  headerText="Código" filterBy="#{ven.idProducto.idProducto}" filterMatchMode="contains">
-                        <h:outputText value="#{ven.idProducto.idProducto}"/>
+                        <p:column  headerText="Código" filterBy="#{ven.idProducto}" filterMatchMode="contains">
+                        <h:outputText value="#{ven.idProducto}"/>
                         </p:column>
-                        <p:column  headerText="Descripción" filterBy="#{ven.idProducto.idTipoProducto.nombreProducto}" filterMatchMode="contains">
-                        <h:outputText value="#{ven.idProducto.idTipoProducto.nombreProducto}"/>
+                    <p:column  headerText="Descripción" filterBy="#{ven.idTipoProducto.idTipoProducto}" filterMatchMode="contains">
+                        <h:outputText value="#{ven.idTipoProducto.nombreProducto}"/>
                         </p:column>
                         <p:column  headerText="Cantidad" filterBy="#{ven.cantidadProducto}" filterMatchMode="contains">
                         <h:outputText value="#{ven.cantidadProducto}"/>

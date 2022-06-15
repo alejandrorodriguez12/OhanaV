@@ -22,20 +22,14 @@
                     <p:column headerText="Código" filterBy="#{ped.numeroDeCompra}" filterMatchMode="contains">
                         <h:outputText value="#{ped.numeroDeCompra}"/>
                     </p:column>
-                    <p:column  headerText="Producto" filterBy="#{ped.idProducto.idTipoProducto.nombreProducto}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.idProducto.idTipoProducto.nombreProducto}"/>
+                    <p:column  headerText="Producto" filterBy="#{ped.idTipoProducto.nombreProducto}" filterMatchMode="contains">
+                        <h:outputText value="#{ped.idTipoProducto.nombreProducto}"/>
                     </p:column>
                     <p:column  headerText="Cantidad" filterBy="#{ped.cantidadProducto}" filterMatchMode="contains">
                         <h:outputText value="#{ped.cantidadProducto}"/>
                     </p:column>
-                    <p:column  headerText="Medio de pago" filterBy="#{ped.idMediosDePago.medioDePago}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.idMediosDePago.medioDePago}"/>
-                    </p:column>
-                    <p:column headerText="Dirección" filterBy="#{ped.idCliente.personas.tipoDeVia} #{ped.idCliente.personas.numeroVia}#{ped.idCliente.personas.letraVia} #{ped.idCliente.personas.numero} #{ped.idCliente.personas.letra} #{ped.idCliente.personas.numeroApto}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.idCliente.personas.tipoDeVia} #{ped.idCliente.personas.numeroVia}#{ped.idCliente.personas.letraVia} #{ped.idCliente.personas.numero} #{ped.idCliente.personas.letra} #{ped.idCliente.personas.numeroApto}"/>
-                    </p:column>
                     <p:column headerText="Estado">
-                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 1 }">
+                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 1}">
                             <h:commandButton  type="button" class="btn btn-primary">En Proceso</h:commandButton>
                         </c:if>
                         <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 2}">

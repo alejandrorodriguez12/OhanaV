@@ -50,7 +50,7 @@ public class personaSession implements Serializable {
                     }
                 } else {
                     FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.getExternalContext().redirect("ingreso.xhtml");
+                    fc.getExternalContext().redirect("../Cliente/ClientePaginaprincipal.xhtml");
                 }
 
             } else {
@@ -177,5 +177,5 @@ public class personaSession implements Serializable {
     public void setPerCre(Personas perCre) {
         this.perCre = perCre;
     }
-
+    
 }

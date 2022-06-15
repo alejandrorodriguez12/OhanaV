@@ -10,7 +10,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -48,7 +47,7 @@ public class Permisos implements Serializable {
     @JoinTable(name = "permisos_roles", joinColumns = {
         @JoinColumn(name = "idPermisos", referencedColumnName = "idPermisos")}, inverseJoinColumns = {
         @JoinColumn(name = "idRol", referencedColumnName = "idRol")})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private Collection<Roles> rolesCollection;
 
     public Permisos() {

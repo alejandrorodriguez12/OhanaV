@@ -131,6 +131,6 @@ public class ClienteSession implements Serializable {
     public void setContraseniaIn(String contraseniaIn) {
         this.contraseniaIn = contraseniaIn;
     }
-
+    
 }
 

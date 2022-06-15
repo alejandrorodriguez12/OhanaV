@@ -11,7 +11,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,22 +62,27 @@ public class Ventas implements Serializable {
     private Date fechaVenta;
     @Column(name = "numeroDeCompra")
     private Integer numeroDeCompra;
-    @OneToMany(mappedBy = "idVentas", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idVentas")
     private Collection<Recibos> recibosCollection;
     @JoinColumn(name = "idAdministrador", referencedColumnName = "idAdministrador")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Administradores idAdministrador;
     @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Clientes idCliente;
     @JoinColumn(name = "idEstadoDeEnvios", referencedColumnName = "idEstadoDeEnvios")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Estadodeenvios idEstadoDeEnvios;
     @JoinColumn(name = "idMediosDePago", referencedColumnName = "idMediosDePago")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Mediosdepago idMediosDePago;
-    @OneToMany(mappedBy = "idVentas", fetch = FetchType.LAZY)
+    @JoinColumn(name = "idTipoProducto", referencedColumnName = "idTipoProducto")
+    @ManyToOne
+    private Tipoproductos idTipoProducto;
+    @OneToMany(mappedBy = "idVentas")
     private Collection<Inventario> inventarioCollection;
+    @OneToMany(mappedBy = "idVentas")
+    private Collection<Productos> productosCollection;
 
     public Ventas() {
     }
@@ -184,6 +188,14 @@ public class Ventas implements Serializable {
         this.idMediosDePago = idMediosDePago;
     }
 
+    public Tipoproductos getIdTipoProducto() {
+        return idTipoProducto;
+    }
+
+    public void setIdTipoProducto(Tipoproductos idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
+    }
+
     @XmlTransient
     public Collection<Inventario> getInventarioCollection() {
         return inventarioCollection;
@@ -191,6 +203,15 @@ public class Ventas implements Serializable {
 
     public void setInventarioCollection(Collection<Inventario> inventarioCollection) {
         this.inventarioCollection = inventarioCollection;
+    }
+
+    @XmlTransient
+    public Collection<Productos> getProductosCollection() {
+        return productosCollection;
+    }
+
+    public void setProductosCollection(Collection<Productos> productosCollection) {
+        this.productosCollection = productosCollection;
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -43,9 +42,9 @@ public class Roles implements Serializable {
     @Size(max = 25)
     @Column(name = "nombreRol")
     private String nombreRol;
-    @ManyToMany(mappedBy = "rolesCollection", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "rolesCollection")
     private Collection<Permisos> permisosCollection;
-    @ManyToMany(mappedBy = "rolesCollection", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "rolesCollection")
     private Collection<Personas> personasCollection;
 
     public Roles() {

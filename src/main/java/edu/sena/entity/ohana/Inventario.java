@@ -10,7 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,13 +70,13 @@ public class Inventario implements Serializable {
     @Column(name = "cantidadSaliente")
     private Integer cantidadSaliente;
     @JoinColumn(name = "idProductos", referencedColumnName = "idProducto")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Productos idProductos;
     @JoinColumn(name = "nit", referencedColumnName = "nit")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Proveedores nit;
     @JoinColumn(name = "idVentas", referencedColumnName = "idVentas")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Ventas idVentas;
 
     public Inventario() {

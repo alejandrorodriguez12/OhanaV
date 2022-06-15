@@ -11,7 +11,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +42,7 @@ public class Administradores implements Serializable {
     private Integer idAdministrador;
     @Column(name = "numeroCedula")
     private BigInteger numeroCedula;
-    @OneToMany(mappedBy = "idAdministrador", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idAdministrador")
     private Collection<Ventas> ventasCollection;
 
     public Administradores() {

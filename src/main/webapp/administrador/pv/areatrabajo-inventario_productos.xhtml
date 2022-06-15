@@ -3,62 +3,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition>  
-
-
 
         <main>
             <fieldset style="width: 80%; margin-left: 33%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%">
 
+                <h:form>
+                    <p:dataTable id="produ" var="prod" value="#{productoSession.leerTodo()}"  class="table" style=" overflow: scroll;height: 300px">
 
-                <div class="table" style="overflow: scroll;height: 300px">
-                    <table border="1" id="produ">
-                        <tr>
-                            
-                            <th width="20%">Nombre Producto</th>  
+                        <p:column headerText="TipoProducto" filterBy="#{prod.idTipoProducto.nombreProducto}" filterMatchMode="contains">
+                            <h:outputText value="#{prod.idTipoProducto.nombreProducto}"/>
+                        </p:column>
+                        <p:column headerText="Nombre prodcuto" filterBy="#{prod.nombres}" filterMatchMode="contains">
+                            <h:outputText value="#{prod.nombres}"/>
+                        </p:column>
+                        <p:column headerText="Foto" filterBy="#{prod.foto}" filterMatchMode="contains">
+                            <img src="../assets/img/#{prod.idProducto}.png" width="90" height="50"></img>
+                        </p:column>
+                        <p:column headerText="Descripción" filterBy="#{prod.descripcion}" filterMatchMode="contains">
+                            <h:outputText value="#{prod.descripcion}"/>
+                        </p:column>
+                        <p:column headerText="Precio" filterBy="#{prod.precio}" filterMatchMode="contains">
+                            <h:outputText value="#{prod.precio}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad en stock" filterBy="#{prod.stock}" filterMatchMode="contains">
+                            <h:outputText value="#{prod.stock}"/>
+                        </p:column>
+                        <p:column headerText="Editar" exportable="false">
+                            <p:commandLink action="#{productoSession.cargaProducto(prod)}" class="btn btn-outline-danger" value="Editar">
 
-                            <th width="20%">Nombre</th>
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Eliminar" exportable="false">
+                            <p:commandLink  action="#{productoSession.removerproducto(prod)}" class="btn btn-outline-danger"  value="Eliminar">
 
-                            <th width="20%">Foto</th>
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>                            
 
-                            <th width="20%">Descripcion</th>
-                            
-                            <th width="20%">Precio</th>
-                            
-                            <th width="20%">Stock</th>
-
-                            <th width="20%">Modificar</th>
-
-                            <th width="20%">Eliminar</th>
-
-                        </tr>
-                        <h:form>
-                            <c:forEach var="prod" items="#{productoSession.leerTodo()}">
-
-                                <tr>
-                                    <td>#{prod.idTipoProducto.nombreProducto}</td>
-
-                                    <td>#{prod.nombres}</td>
-
-                                    <td>#{prod.foto};</td>
-
-                                    <td>#{prod.descripcion}</td>
-                                    
-                                    <td>#{prod.precio}</td>
-                                    
-                                    <td>#{prod.stock}</td>
-
-                                    <td><h:commandButton action="#{productoSession.cargaProducto(prod)}" class="btn btn-outline-danger" value="Editar"></h:commandButton></td>
-
-                                    <td><h:commandButton action="#{productoSession.removerproducto(prod)}" class="btn btn-outline-danger"  value="Eliminar"/></td>
-                                </tr>
-                            </c:forEach>
-
-                        </h:form>   
-
-                    </table>
-                </div>
+                        </h:form> 
 
                 <div class="btn-group" role="group" aria-label="Basic example" style="margin-left: 78%">
                     <a href="#{request.contextPath}/administrador/inventario_agregarproductos.xhtml" >
@@ -69,7 +54,6 @@
             </fieldset>
 
         </main>
-
 
     </ui:composition>
 </html>

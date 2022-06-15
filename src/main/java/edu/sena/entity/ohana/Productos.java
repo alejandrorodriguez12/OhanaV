@@ -10,7 +10,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,11 +60,16 @@ public class Productos implements Serializable {
     private Double precio;
     @Column(name = "Stock")
     private Integer stock;
-    @OneToMany(mappedBy = "idProductos", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productId")
+    private Collection<ItemCarrito> itemCarritoCollection;
+    @OneToMany(mappedBy = "idProductos")
     private Collection<Inventario> inventarioCollection;
     @JoinColumn(name = "idTipoProducto", referencedColumnName = "idTipoProducto")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Tipoproductos idTipoProducto;
+    @JoinColumn(name = "idVentas", referencedColumnName = "idVentas")
+    @ManyToOne
+    private Ventas idVentas;
 
     public Productos() {
     }
@@ -123,6 +127,15 @@ public class Productos implements Serializable {
     }
 
     @XmlTransient
+    public Collection<ItemCarrito> getItemCarritoCollection() {
+        return itemCarritoCollection;
+    }
+
+    public void setItemCarritoCollection(Collection<ItemCarrito> itemCarritoCollection) {
+        this.itemCarritoCollection = itemCarritoCollection;
+    }
+
+    @XmlTransient
     public Collection<Inventario> getInventarioCollection() {
         return inventarioCollection;
     }
@@ -137,6 +150,14 @@ public class Productos implements Serializable {
 
     public void setIdTipoProducto(Tipoproductos idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
+    }
+
+    public Ventas getIdVentas() {
+        return idVentas;
+    }
+
+    public void setIdVentas(Ventas idVentas) {
+        this.idVentas = idVentas;
     }
 
     @Override

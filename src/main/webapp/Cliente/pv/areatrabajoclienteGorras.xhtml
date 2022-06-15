@@ -3,11 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough">
     
     <ui:composition>
 <div class="container">
     <c:forEach items="#{productoSession.findByGorrasStartsWith(nombres)}" var="pro">
+        <h:form class="row g-3 needs-validation" >         
+            <div class="item-text">
+                <div class="form-group">
+                    <div class="card">
+                        <div class="card-header">
+                            <label class="col-sm-12">#{pro.nombres}</label>                                    
+                        </div>
+                        <div class="card-body text-center d-flex">
+                            <label><i class="fas fa-dollar-sign">#{pro.precio}</i></label>
+                            <img src="../assets/img/#{pro.idProducto}.png" width="200" height="170"></img>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-sm-12">
+                                <label>#{pro.descripcion}</label>                                   
+                            </div>
+                            <div class=" col-sm-12 text-center">                                
+                                <h:commandButton action="#{productoSession.addItemCart(pro.idProducto,personaSession.perLogin.numeroCedula)}" class="botons" value="Agregar al carrito"/>
+                            </div>                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <!--
             <div class="item-text">
                 <div class="form-group">
                     <div class="card">
@@ -30,6 +55,7 @@
                     </div>
                 </div>
             </div>
+        -->
         </c:forEach>
             </div>
     </ui:composition>

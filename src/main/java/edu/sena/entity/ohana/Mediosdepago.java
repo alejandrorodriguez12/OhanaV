@@ -10,7 +10,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,7 +42,7 @@ public class Mediosdepago implements Serializable {
     @Size(max = 11)
     @Column(name = "medioDePago")
     private String medioDePago;
-    @OneToMany(mappedBy = "idMediosDePago", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idMediosDePago")
     private Collection<Ventas> ventasCollection;
 
     public Mediosdepago() {

@@ -30,12 +30,12 @@ public class VentasFacade extends AbstractFacade<Ventas> implements VentasFacade
     public VentasFacade() {
         super(Ventas.class);
     }
-    
+
     @Override
-    public List<Ventas> leerTodo(){
+    public List<Ventas> leerTodo() {
         em.getEntityManagerFactory().getCache().evictAll();
-        Query ven = em.createQuery("SELECT v FROM Ventas v");
+        Query ven = em.createQuery("SELECT u FROM Ventas u");
         return ven.getResultList();
     }
-    
+
 }
