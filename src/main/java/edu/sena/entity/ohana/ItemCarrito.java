@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,10 +42,10 @@ public class ItemCarrito implements Serializable {
     @Column(name = "cantidad")
     private Integer cantidad;
     @JoinColumn(name = "id_Carrito", referencedColumnName = "idcarrito")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Carritodecompras idCarrito;
     @JoinColumn(name = "product_id", referencedColumnName = "idProducto")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Productos productId;
 
     public ItemCarrito() {

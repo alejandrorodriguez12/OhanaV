@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,16 +45,14 @@ public class Clientes implements Serializable {
     private Integer idClientes;
     @Column(name = "estados")
     private Short estados;
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "idCliente", fetch = FetchType.LAZY)
     private Collection<Carritodecompras> carritodecomprasCollection;
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "idCliente", fetch = FetchType.LAZY)
     private Collection<Cotizaciones> cotizacionesCollection;
-    @OneToMany(mappedBy = "idCliente")
-    private Collection<Ventas> ventasCollection;
     @JoinColumns({
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula"),
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula")})
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Personas personas;
 
     public Clientes() {
@@ -95,15 +94,6 @@ public class Clientes implements Serializable {
 
     public void setCotizacionesCollection(Collection<Cotizaciones> cotizacionesCollection) {
         this.cotizacionesCollection = cotizacionesCollection;
-    }
-
-    @XmlTransient
-    public Collection<Ventas> getVentasCollection() {
-        return ventasCollection;
-    }
-
-    public void setVentasCollection(Collection<Ventas> ventasCollection) {
-        this.ventasCollection = ventasCollection;
     }
 
     public Personas getPersonas() {

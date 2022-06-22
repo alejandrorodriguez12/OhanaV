@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,9 +44,9 @@ public class Tipoproductos implements Serializable {
     @Size(max = 15)
     @Column(name = "nombreProducto")
     private String nombreProducto;
-    @OneToMany(mappedBy = "idTipoProducto")
+    @OneToMany(mappedBy = "idTipoProducto", fetch = FetchType.LAZY)
     private Collection<Ventas> ventasCollection;
-    @OneToMany(mappedBy = "idTipoProducto")
+    @OneToMany(mappedBy = "idTipoProducto", fetch = FetchType.LAZY)
     private Collection<Productos> productosCollection;
 
     public Tipoproductos() {

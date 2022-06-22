@@ -11,10 +11,12 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -62,26 +64,28 @@ public class Ventas implements Serializable {
     private Date fechaVenta;
     @Column(name = "numeroDeCompra")
     private Integer numeroDeCompra;
-    @OneToMany(mappedBy = "idVentas")
+    @OneToMany(mappedBy = "idVentas", fetch = FetchType.LAZY)
     private Collection<Recibos> recibosCollection;
     @JoinColumn(name = "idAdministrador", referencedColumnName = "idAdministrador")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Administradores idAdministrador;
-    @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
-    @ManyToOne
-    private Clientes idCliente;
     @JoinColumn(name = "idEstadoDeEnvios", referencedColumnName = "idEstadoDeEnvios")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Estadodeenvios idEstadoDeEnvios;
     @JoinColumn(name = "idMediosDePago", referencedColumnName = "idMediosDePago")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Mediosdepago idMediosDePago;
+    @JoinColumns({
+        @JoinColumn(name = "idCliente", referencedColumnName = "numeroCedula"),
+        @JoinColumn(name = "idCliente", referencedColumnName = "numeroCedula")})
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Personas personas;
     @JoinColumn(name = "idTipoProducto", referencedColumnName = "idTipoProducto")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Tipoproductos idTipoProducto;
-    @OneToMany(mappedBy = "idVentas")
+    @OneToMany(mappedBy = "idVentas", fetch = FetchType.LAZY)
     private Collection<Inventario> inventarioCollection;
-    @OneToMany(mappedBy = "idVentas")
+    @OneToMany(mappedBy = "idVentas", fetch = FetchType.LAZY)
     private Collection<Productos> productosCollection;
 
     public Ventas() {
@@ -164,14 +168,6 @@ public class Ventas implements Serializable {
         this.idAdministrador = idAdministrador;
     }
 
-    public Clientes getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Clientes idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public Estadodeenvios getIdEstadoDeEnvios() {
         return idEstadoDeEnvios;
     }
@@ -186,6 +182,14 @@ public class Ventas implements Serializable {
 
     public void setIdMediosDePago(Mediosdepago idMediosDePago) {
         this.idMediosDePago = idMediosDePago;
+    }
+
+    public Personas getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(Personas personas) {
+        this.personas = personas;
     }
 
     public Tipoproductos getIdTipoProducto() {

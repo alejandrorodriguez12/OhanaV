@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,7 +43,7 @@ public class Estadodeenvios implements Serializable {
     @Size(max = 10)
     @Column(name = "estadoDeEnvio")
     private String estadoDeEnvio;
-    @OneToMany(mappedBy = "idEstadoDeEnvios")
+    @OneToMany(mappedBy = "idEstadoDeEnvios", fetch = FetchType.LAZY)
     private Collection<Ventas> ventasCollection;
 
     public Estadodeenvios() {

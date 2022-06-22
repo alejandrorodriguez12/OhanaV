@@ -13,38 +13,30 @@
         <h:form>
             <main style="overflow: scroll; height:300px;">
                 <p:dataTable id="pedid" var="ped" value="#{ventasSession.leerTodo()}" >
-
-                    <p:column  headerText="Fecha" filterBy="#{ped.fechaVenta}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.fechaVenta}">
-                            <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
-                        </h:outputText>
-                    </p:column>
-                    <p:column headerText="Código" filterBy="#{ped.numeroDeCompra}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.numeroDeCompra}"/>
-                    </p:column>
-                    <p:column  headerText="Producto" filterBy="#{ped.idTipoProducto.nombreProducto}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.idTipoProducto.nombreProducto}"/>
-                    </p:column>
-                    <p:column  headerText="Cantidad" filterBy="#{ped.cantidadProducto}" filterMatchMode="contains">
-                        <h:outputText value="#{ped.cantidadProducto}"/>
-                    </p:column>
-                    <p:column headerText="Estado">
-                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 1}">
-                            <h:commandButton  type="button" class="btn btn-primary">En Proceso</h:commandButton>
-                        </c:if>
-                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 2}">
-                            <h:commandButton  type="button" class="btn btn-warning">Enviado</h:commandButton>
-                        </c:if>
-                        <c:if test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 3}">
-                            <h:commandButton type="button" class="btn btn-success">Entregado</h:commandButton>
-                        </c:if>
-                        <c:if  test="#{ped.idEstadoDeEnvios.idEstadoDeEnvios == 4}">
-                            <h:commandButton  type="button" class="btn btn-danger">Cancelado</h:commandButton>
-                        </c:if>  
-                    </p:column>
-                    <p:column  headerText="Cambiar estado">
-                        <h:commandButton action="#{ventasSession.cambiarEstado(ped)}" class="btn btn-outline-danger" value="Cambiar"></h:commandButton>
-                    </p:column>
+                    <!--<h:form>-->
+                        <p:column width="100px" headerText="Código" filterBy="#{ped.idVentas}" filterMatchMode="contains">
+                            <h:outputText value="#{ped.idVentas}"/>
+                        </p:column>
+                        <p:column headerText="Fecha" filterBy="#{ped.fechaVenta}" filterMatchMode="contains">
+                            <h:outputText value="#{ped.fechaVenta}">
+                                <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Cantidad" filterBy="#{ped.cantidadProducto}" filterMatchMode="contains">
+                            <h:outputText value="#{ped.cantidadProducto}"/>
+                        </p:column>
+                        <p:column headerText="Total"  filterBy="#{ped.valorTotal}" filterMatchMode="contains">
+                            <h:outputText value="#{ped.valorTotal}"/>
+                        </p:column>
+                        <p:column headerText="Estado">
+                            <h:outputText value="#{ped.idEstadoDeEnvios.estadoDeEnvio}"/>
+                        </p:column>
+                        <p:column headerText="Pasar a estado:">
+                            <h:commandButton action="#{ventasSession.cambiarEstados(ped,2)}" class="btn btn-outline-danger" value="Enviado"/>
+                            <h:commandButton action="#{ventasSession.cambiarEstados(ped,3)}" class="btn btn-outline-danger" value="Entregado"/>
+                            <h:commandButton action="#{ventasSession.cambiarEstados(ped,4)}" class="btn btn-outline-danger" value="Cancelado"/>
+                        </p:column>
+                    <!--</h:form>-->
                 </p:dataTable>
 
             </main>

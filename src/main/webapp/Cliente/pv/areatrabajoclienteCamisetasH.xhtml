@@ -7,6 +7,7 @@
     <ui:composition>
 <div class="container">
     <c:forEach items="#{productoSession.findByCamisetasHStartsWith(nombres)}" var="pro">
+        <h:form class="row g-3 needs-validation">
             <div class="item-text">
                 <div class="form-group">
                     <div class="card">
@@ -22,13 +23,13 @@
                                 <label>#{pro.descripcion}</label>                                   
                             </div>
                             <div class=" col-sm-12 text-center">                                
-                                <a href="" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></a>
-                                <a href="" class="btn btn-danger">Comprar</a>
+                                <h:commandButton action="#{productoSession.addItemCart(pro.idProducto,personaSession.perLogin.numeroCedula)}" class="btn btn2 btn-outline-primary" value="Agregar al carrito"/>
                             </div>                         
                         </div>
                     </div>
                 </div>
             </div>
+            </h:form>
         </c:forEach>
             </div>
 

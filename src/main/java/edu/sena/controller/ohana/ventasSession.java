@@ -9,6 +9,7 @@ package edu.sena.controller.ohana;
 import edu.sena.entity.ohana.Estadodeenvios;
 import edu.sena.entity.ohana.Ventas;
 import edu.sena.facade.ohana.EstadodeenviosFacadeLocal;
+import edu.sena.entity.ohana.Personas;
 import edu.sena.facade.ohana.VentasFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -48,14 +49,18 @@ private ArrayList<Estadodeenvios> ListaEstadoEnvio = new ArrayList<>();
         return ventasFacadeLocal.leerTodo();
     }
     
-            public void cambiarEstado(Estadodeenvios cliE){
+    public List<Ventas> getByPersona(Personas persona){
+        return ventasFacadeLocal.getByPersona(persona);
+    }
+    
+    public void cambiarEstados(Ventas venta, int idEstado){
         try {
-            switch(cliE.getIdEstadoDeEnvios()){
-                case 1: cliE.setIdEstadoDeEnvios(Integer.parseInt("2"));
-                case 2: cliE.setIdEstadoDeEnvios(Integer.parseInt("3"));
-                case 3: cliE.setIdEstadoDeEnvios(Integer.parseInt("4"));
+            if(venta != null){
+                venta.setIdEstadoDeEnvios(
+                    estadodeenviosFacadeLocal.find(idEstado)
+                );
+                ventasFacadeLocal.edit(venta);
             }
-            estadodeenviosFacadeLocal.edit(cliE);
             PrimeFaces.current().executeScript("Swal.fire("
                     + "'Usuario',"
                     + "'Actualizado con exito !!!'"

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Barrios implements Serializable {
     @Column(name = "nombreBarrio")
     private String nombreBarrio;
     @JoinColumn(name = "numeroLocalidad", referencedColumnName = "numeroLocalidad")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Localidades numeroLocalidad;
 
     public Barrios() {

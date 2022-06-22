@@ -6,6 +6,7 @@
 package edu.sena.facade.ohana;
 
 import edu.sena.entity.ohana.Ventas;
+import edu.sena.entity.ohana.Personas;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -32,4 +33,7 @@ public interface VentasFacadeLocal {
     
     public List<Ventas> leerTodo();
     
+    public List<Ventas> getByPersona(Personas persona);
+    
+    public void setVenta(int unidades, double total, int numeroCedula);
 }

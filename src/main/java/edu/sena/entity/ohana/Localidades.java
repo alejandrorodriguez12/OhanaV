@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,9 +43,9 @@ public class Localidades implements Serializable {
     @Size(max = 18)
     @Column(name = "nombreLocalidad")
     private String nombreLocalidad;
-    @OneToMany(mappedBy = "numeroLocalidad")
+    @OneToMany(mappedBy = "numeroLocalidad", fetch = FetchType.LAZY)
     private Collection<Barrios> barriosCollection;
-    @OneToMany(mappedBy = "numeroLocalidad")
+    @OneToMany(mappedBy = "numeroLocalidad", fetch = FetchType.LAZY)
     private Collection<Personas> personasCollection;
 
     public Localidades() {

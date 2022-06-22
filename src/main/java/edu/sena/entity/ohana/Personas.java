@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -110,16 +111,18 @@ public class Personas implements Serializable {
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula"),
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula")}, inverseJoinColumns = {
         @JoinColumn(name = "idRol", referencedColumnName = "idRol")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Roles> rolesCollection;
-    @OneToMany(mappedBy = "personas")
+    @OneToMany(mappedBy = "personas", fetch = FetchType.LAZY)
     private Collection<Encargadosdelinventario> encargadosdelinventarioCollection;
     @JoinColumn(name = "numeroLocalidad", referencedColumnName = "numeroLocalidad")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Localidades numeroLocalidad;
-    @OneToMany(mappedBy = "personas")
+    @OneToMany(mappedBy = "personas", fetch = FetchType.LAZY)
     private Collection<Carritodecompras> carritodecomprasCollection;
-    @OneToMany(mappedBy = "personas")
+    @OneToMany(mappedBy = "personas", fetch = FetchType.LAZY)
+    private Collection<Ventas> ventasCollection;
+    @OneToMany(mappedBy = "personas", fetch = FetchType.LAZY)
     private Collection<Clientes> clientesCollection;
 
     public Personas() {
@@ -289,6 +292,15 @@ public class Personas implements Serializable {
 
     public void setCarritodecomprasCollection(Collection<Carritodecompras> carritodecomprasCollection) {
         this.carritodecomprasCollection = carritodecomprasCollection;
+    }
+
+    @XmlTransient
+    public Collection<Ventas> getVentasCollection() {
+        return ventasCollection;
+    }
+
+    public void setVentasCollection(Collection<Ventas> ventasCollection) {
+        this.ventasCollection = ventasCollection;
     }
 
     @XmlTransient

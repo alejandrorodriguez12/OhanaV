@@ -63,11 +63,14 @@
                         </div>
                         <div class="card-body">
                             <label>Total a Pagar:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h4 primary">0</i></a>
+                                <a class="form-control text-center"><i class="fas fa-dollar-sign h4 primary">#{carritoCompras.getTotal()}</i></a>
+                           
                         </div>
                         <div class="card-footer">
-                            <a href="Controlador?accion=GenerarCompra" class="btn btn-danger btn-block">Generar Compra</a>
-                            <a href="#" data-toggle="modal" data-target="#myModalPago" class="btn btn-info btn-block">Realizar Pago</a>
+                            <h:form class="" >
+                                    <h:commandButton action="#{carritoCompras.hacerCompra(personaSession.perLogin.numeroCedula)}" class="btn btn2 btn-outline-primary" value="Generar Compra"></h:commandButton>
+                               
+                            </h:form>
                         </div>
                     </div>
                 </div>

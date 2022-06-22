@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,15 +42,15 @@ public class Carritodecompras implements Serializable {
     @Basic(optional = false)
     @Column(name = "idcarrito")
     private Integer idcarrito;
-    @OneToMany(mappedBy = "idCarrito")
+    @OneToMany(mappedBy = "idCarrito", fetch = FetchType.LAZY)
     private Collection<ItemCarrito> itemCarritoCollection;
     @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Clientes idCliente;
     @JoinColumns({
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula"),
         @JoinColumn(name = "numeroCedula", referencedColumnName = "numeroCedula")})
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Personas personas;
 
     public Carritodecompras() {

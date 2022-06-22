@@ -4,40 +4,39 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-        <table id="compras">
-        <br></br>
-        <br></br>   
-                <tr> 
-                    <th>Fecha</th>
-                    <th>Codigo</th> 
-                    <th>Producto</th> 
-                    <th>Cantidad</th> 
-                    <th>Direccion</th>
-                    <th>Estado</th>
-                </tr>
-        <c:forEach var="com" items="#{ventasSession.leerTodo()}">
-                <tr>
-                    <td> <h:outputText value="#{com.fechaVenta}">
-                        <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
-                    </h:outputText>
-                        </td>
-                    <td>#{com.numeroDeCompra}</td>
-                    <td>#{com.idProducto.idTipoProducto.nombreProducto}</td>
-                    <td>#{com.cantidadProducto}</td>
-                    <td>#{com.idCliente.personas.tipoDeVia}#{com.idCliente.personas.numeroVia}#{com.idCliente.personas.numero}#{com.idCliente.personas.letra}#{com.idCliente.personas.numeroApto}</td>
-                    <td>#{com.idEstadoDeEnvios.estadoDeEnvio}</td>                   
-                   
-                </tr>
-            </c:forEach>
-                
-            </table>
+        <h:form>
+            <main style="overflow: scroll; height:300px;">
+                <p:dataTable id="Compras" var="com" value="#{ventasSession.getByPersona(personaSession.perLogin)}"  class="table">
+
+                    <p:column width="100px" headerText="Código" filterMatchMode="contains">
+                        <h:outputText value="#{com.idVentas}"/>
+                    </p:column>
+                    <p:column headerText="Fecha" filterMatchMode="contains">
+                        <h:outputText value="#{com.fechaVenta}">
+                            <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Cantidad" filterMatchMode="contains">
+                        <h:outputText value="#{com.cantidadProducto}"/>
+                    </p:column>
+                    <p:column headerText="Total" filterMatchMode="contains">
+                        <h:outputText value="#{com.valorTotal}"/>
+                    </p:column>
+                    <p:column headerText="Estado de envio" filterMatchMode="contains">
+                        <h:outputText value="#{com.idEstadoDeEnvios.estadoDeEnvio}"/>
+                    </p:column>                  
+                </p:dataTable>
+                </main>
+        
         <p><div align="center">
-                        <h:commandButton onclick="ExportToExcel('compras')" class="btn btn-outline-danger" value="Exportar" style=""></h:commandButton> 
-                </div></p>
+                <h:commandButton onclick="ExportToExcel('compras')" class="btn btn-outline-danger" value="Exportar" style=""></h:commandButton> 
+            </div></p>
         <br></br>
         <br></br>
-        </ui:composition>
+        </h:form>
+    </ui:composition>
 </html>
 
