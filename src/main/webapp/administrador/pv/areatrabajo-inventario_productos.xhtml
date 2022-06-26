@@ -19,9 +19,6 @@
                         <p:column headerText="Nombre prodcuto" filterBy="#{prod.nombres}" filterMatchMode="contains">
                             <h:outputText value="#{prod.nombres}"/>
                         </p:column>
-                        <p:column headerText="Foto" filterBy="#{prod.foto}" filterMatchMode="contains">
-                            <img src="../assets/img/#{prod.idProducto}.png" width="90" height="50"></img>
-                        </p:column>
                         <p:column headerText="Descripción" filterBy="#{prod.descripcion}" filterMatchMode="contains">
                             <h:outputText value="#{prod.descripcion}"/>
                         </p:column>

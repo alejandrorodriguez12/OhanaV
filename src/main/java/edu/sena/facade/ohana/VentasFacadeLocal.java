@@ -5,6 +5,7 @@
  */
 package edu.sena.facade.ohana;
 
+import edu.sena.entity.ohana.ItemCarrito;
 import edu.sena.entity.ohana.Ventas;
 import edu.sena.entity.ohana.Personas;
 import java.util.List;
@@ -35,5 +36,5 @@ public interface VentasFacadeLocal {
     
     public List<Ventas> getByPersona(Personas persona);
     
-    public void setVenta(int unidades, double total, int numeroCedula);
+    public void setVenta(int unidades, double total, int numeroCedula, List<ItemCarrito> items);
 }

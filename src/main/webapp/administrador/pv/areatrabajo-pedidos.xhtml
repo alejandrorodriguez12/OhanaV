@@ -11,27 +11,30 @@
 
         <legend style="font-family: fantasy;font-size: 200%; margin-left: 44%">Pedidos</legend>
         <h:form>
-            <main style="overflow: scroll; height:300px;">
+            <main style="overflow: scroll; height:320px;">
                 <p:dataTable id="pedid" var="ped" value="#{ventasSession.leerTodo()}" >
                     <!--<h:form>-->
-                        <p:column width="100px" headerText="Código" filterBy="#{ped.idVentas}" filterMatchMode="contains">
+                        <p:column width="50px" headerText="Código">
                             <h:outputText value="#{ped.idVentas}"/>
                         </p:column>
-                        <p:column headerText="Fecha" filterBy="#{ped.fechaVenta}" filterMatchMode="contains">
+                        <p:column width="150px" headerText="Fecha">
                             <h:outputText value="#{ped.fechaVenta}">
                                 <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Cantidad" filterBy="#{ped.cantidadProducto}" filterMatchMode="contains">
+                        <p:column width="50px" headerText="Cantidad" >
                             <h:outputText value="#{ped.cantidadProducto}"/>
                         </p:column>
-                        <p:column headerText="Total"  filterBy="#{ped.valorTotal}" filterMatchMode="contains">
+                        <p:column width="150px" headerText="Total">
                             <h:outputText value="#{ped.valorTotal}"/>
+                        </p:column>
+                       <p:column width="150px" headerText="Cliente">
+                           <h:outputText value="#{ped.personas.numeroCedula}"/>
                         </p:column>
                         <p:column headerText="Estado">
                             <h:outputText value="#{ped.idEstadoDeEnvios.estadoDeEnvio}"/>
                         </p:column>
-                        <p:column headerText="Pasar a estado:">
+                    <p:column headerText="Pasar a estado:" style="display: flex">
                             <h:commandButton action="#{ventasSession.cambiarEstados(ped,2)}" class="btn btn-outline-danger" value="Enviado"/>
                             <h:commandButton action="#{ventasSession.cambiarEstados(ped,3)}" class="btn btn-outline-danger" value="Entregado"/>
                             <h:commandButton action="#{ventasSession.cambiarEstados(ped,4)}" class="btn btn-outline-danger" value="Cancelado"/>
@@ -52,7 +55,6 @@
                 </h:commandLink>
             </div>
         </h:form> 
-
     </ui:composition>
 </html>
 

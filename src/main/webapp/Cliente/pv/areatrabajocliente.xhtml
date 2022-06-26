@@ -31,9 +31,17 @@
                 </p:dataTable>
                 </main>
         
-        <p><div align="center">
-                <h:commandButton onclick="ExportToExcel('compras')" class="btn btn-outline-danger" value="Exportar" style=""></h:commandButton> 
-            </div></p>
+                            <div align="center">
+                        <h:commandLink style="margin-right: 2%">
+                            <h:graphicImage url="../assets/img/Excel.jpg" width="50px" height="70px"/>
+                            <p:dataExporter type="xls" target="Compras" fileName="compraspdf"/>
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <h:graphicImage url="../assets/img/pdf.png" width="50px" height="70px"/>
+                            <p:dataExporter type="pdf" target="Compras" fileName="compraspdf"/>
+                        </h:commandLink>
+                    </div>
         <br></br>
         <br></br>
         </h:form>

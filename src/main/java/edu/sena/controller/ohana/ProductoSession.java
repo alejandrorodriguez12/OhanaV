@@ -190,8 +190,8 @@ public class ProductoSession implements Serializable {
         this.idTipoProducto = idTipoProducto;
     }
 
-    public void addItemCart(int idProducto, int numeroCedula) {             
-        if (carritodecomprasFacadeLocal.agregarCarrito(numeroCedula, idProducto) > 0) {
+    public void addItemCart(Productos pro, int numeroCedula) {   
+        if (carritodecomprasFacadeLocal.agregarCarrito(numeroCedula, pro.getIdProducto()) > 0) {
             PrimeFaces.current().executeScript("Swal.fire("
                     + " 'Producto',"
                     + " 'Agregado con exito', "

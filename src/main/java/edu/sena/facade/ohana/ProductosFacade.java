@@ -6,6 +6,7 @@
 package edu.sena.facade.ohana;
 
 import static edu.sena.entity.ohana.Images_.id;
+import edu.sena.entity.ohana.ItemCarrito;
 import edu.sena.entity.ohana.Productos;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -47,6 +48,19 @@ public class ProductosFacade extends AbstractFacade<Productos> implements Produc
         em.getEntityManagerFactory().getCache().evictAll();
         Query prod = em.createQuery("SELECT u FROM Productos u");
         return prod.getResultList();
+    }
+    
+    @Override
+    public void actualizarStock(List<ItemCarrito> items) {
+        try {
+            for (ItemCarrito itemCarrito : items) {
+                Productos producto = this.find(itemCarrito.getProductId().getIdProducto());
+                producto.setStock(producto.getStock() - itemCarrito.getCantidad());
+                this.edit(producto);
+            }
+        } catch (Exception e) {
+            System.out.println("actualizarStock Error: " + e.getMessage());
+        }
     }
 
     @Override

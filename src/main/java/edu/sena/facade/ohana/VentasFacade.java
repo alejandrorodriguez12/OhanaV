@@ -5,11 +5,15 @@
  */
 package edu.sena.facade.ohana;
 
+import edu.sena.entity.ohana.ItemCarrito;
 import edu.sena.entity.ohana.Ventas;
 import edu.sena.entity.ohana.Personas;
+import edu.sena.entity.ohana.Productos;
+import edu.sena.facade.ohana.ProductosFacadeLocal;
 import java.util.List;
 import java.time.LocalDate;  
 import java.time.format.DateTimeFormatter;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,6 +28,9 @@ public class VentasFacade extends AbstractFacade<Ventas> implements VentasFacade
 
     @PersistenceContext(unitName = "up_ohana")
     private EntityManager em;
+    
+    @EJB
+    ProductosFacadeLocal productosFacadeLocal;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -50,7 +57,7 @@ public class VentasFacade extends AbstractFacade<Ventas> implements VentasFacade
 
     @Override
     public void setVenta(
-        int unidades, double total, int numeroCedula
+        int unidades, double total, int numeroCedula, List<ItemCarrito> items
     ) {
         try {
             Query venta = em.createNativeQuery(
@@ -63,6 +70,8 @@ public class VentasFacade extends AbstractFacade<Ventas> implements VentasFacade
             venta.setParameter(3, LocalDate.now());
             venta.setParameter(4, numeroCedula);
             venta.executeUpdate();
+            
+            productosFacadeLocal.actualizarStock(items);
         } catch (Exception e) {
             System.out.println("error: " + e.getMessage());
         }

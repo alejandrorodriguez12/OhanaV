@@ -2,147 +2,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition>
-        <div class="container">
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorrablanca.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra estilo blanca</h3>
-                    <p>Dale tu estilo ha esta espectacular gorra.</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
+<div class="container">
+    <c:forEach items="#{productoSession.findByGorrasStartsWith(nombres)}" var="pro">
+        <h:form class="row g-3 needs-validation" >         
+            <div class="item-text">
+                <div class="form-group">
+                    <div class="card">
+                        <div class="card-header">
+                            <label class="col-sm-12">#{pro.nombres}</label>                                    
+                        </div>
+                        <div class="card-body text-center d-flex">
+                            <label><i class="fas fa-dollar-sign">#{pro.precio}</i></label>
+                            <img src="../assets/img/#{pro.idProducto}.png" width="200" height="170"></img>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-sm-12">
+                                <label>#{pro.descripcion}</label>                                   
+                            </div>                        
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorraazuloscuro.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra azul oscura</h3>
-                    <p>Con tu estilo y si le adicionas este, no abra nadie que se compare a ti..</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
+        </h:form>
+        <!--
+            <div class="item-text">
+                <div class="form-group">
+                    <div class="card">
+                        <div class="card-header">
+                            <label class="col-sm-12">#{pro.nombres}</label>                                    
+                        </div>
+                        <div class="card-body text-center d-flex">
+                            <label><i class="fas fa-dollar-sign">#{pro.precio}</i></label>
+                            <img src="../assets/img/#{pro.idProducto}.png" width="200" height="170"></img>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-sm-12">
+                                <label>#{pro.descripcion}</label>                                   
+                            </div>
+                            <div class=" col-sm-12 text-center">                                
+                                <a href="" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></a>
+                                <a href="" class="btn btn-danger">Comprar</a>
+                            </div>                         
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorragris.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra estilo gris</h3>
-                    <p>Con un espectacular estilo transmitiendo esa transparencia</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
+        -->
+        </c:forEach>
             </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorraverde.jpg" alt="" class="item-img" width="100%"/>
-                <div class="item-text">
-                    <h3>Gorra estilo verde</h3>
-                    <p>Para ti quer eres una persona amigable con el medio ambiente.</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorranegra.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra estilo negro</h3>
-                    <p>Un estilo que combina con todo.</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/goranaranja.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra estilo naranja</h3>
-                    <p>Un estilo para esas personas que no paran de divertirse</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <br/>
-        <br/>
-        <h1 class="prediseñado" style="text-align: center;">Gorras prediseñadas</h1>
-        <div class="container">
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/Gorra-de-Sol-de-algod-n-con-estampado-de-Pokemon-Gengar-gorra-de-b-isbol-luminosa.jpg_q50.jpg" alt="" class="item-img" width="90%"/>
-                <div class="item-text">
-                    <h3>Gorra sol edicion pokemon</h3>
-                    <p>Vuelvete un entranador pokemon con esta espectacular gorra</p>
-                    <a href="carrito de compras.html">COP 33.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/Gorra-con-estampado-facial-del-Anime-japon-s-de-Naruto-Uzumaki-Kurama-gorra-de-b-isbol.jpg" alt="" class="item-img" width="100%"/>
-                <div class="item-text">
-                    <h3>Gorra naruto</h3>
-                    <p>Revive tu infancia con esta espectacular gorra de naruto</p>
-                    <a href="carrito de compras.html">COP 33.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorra-de-b-isbol-con-estampados-coloridos.jpg" alt="" class="item-img" width="80%"/>
-                <div class="item-text">
-                    <h3>Gorra de sol tokyo ghoul</h3>
-                    <p>Ponte a la moda con este estilo increible del anime tokyo ghoul </p>
-                    <a href="carrito de compras.html">COP 30.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorra-personalizada-friki.png" alt="" class="item-img" width="100%"/>
-                <div class="item-text">
-                    <h3>Gorra star wars(darth vader)</h3>
-                    <p>Unete al lado oscuro con star wars, gorra promocional</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/gorra-minecraft-personalizada.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra edicion minecraft</h3>
-                    <p>Vuelve al mundo retro con pacman</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="#{request.contextPath}/assets/img/images.jpg" alt="" class="item-img"/>
-                <div class="item-text">
-                    <h3>Gorra de sol marvel</h3>
-                    <p>Espectacular gorra edicion marvel</p>
-                    <a href="carrito de compras.html">COP 20.000
-                        <img class="logo" src="http://assets.stickpng.com/thumbs/59bedb1e7a216d0b052f128b.png" style="width: 70px;height: 50px;float: right; margin-right: 40px"/>
-                    </a>
-                </div>
-            </div>
-        </div>
     </ui:composition>
 </html>
 

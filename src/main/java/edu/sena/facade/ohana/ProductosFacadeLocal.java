@@ -5,6 +5,7 @@
  */
 package edu.sena.facade.ohana;
 
+import edu.sena.entity.ohana.ItemCarrito;
 import edu.sena.entity.ohana.Productos;
 import java.io.IOException;
 import java.util.List;
@@ -35,6 +36,8 @@ public interface ProductosFacadeLocal {
     int count();
 
     public List<Productos> leerTodo();
+    
+    public void actualizarStock(List<ItemCarrito> items);
     
     public boolean agregarProducto(Productos prodagr, int idProducto, int idTipoProducto);
     

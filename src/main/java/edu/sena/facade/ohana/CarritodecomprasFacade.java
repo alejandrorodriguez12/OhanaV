@@ -163,7 +163,7 @@ public class CarritodecomprasFacade extends AbstractFacade<Carritodecompras> imp
     public void updateProductoenCarrito(int idItem, int qty) {
        try {
             Query carrito = em.createNativeQuery(
-                "UPDATE ohana.item_carrito SET cantidad = ? WHERE itemId = ?"
+                "UPDATE item_carrito SET cantidad = ? WHERE itemId = ?"
             );
             carrito.setParameter(1, qty);
             carrito.setParameter(2, idItem);

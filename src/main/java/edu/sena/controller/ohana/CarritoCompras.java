@@ -7,9 +7,11 @@ package edu.sena.controller.ohana;
 
 import edu.sena.entity.ohana.Carritodecompras;
 import edu.sena.entity.ohana.ItemCarrito;
+import edu.sena.entity.ohana.Productos;
 import edu.sena.facade.ohana.CarritodecomprasFacadeLocal;
 import edu.sena.facade.ohana.ItemCarritoFacadeLocal;
 import edu.sena.facade.ohana.VentasFacadeLocal;
+import edu.sena.facade.ohana.ProductosFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -33,6 +35,9 @@ public class CarritoCompras implements Serializable {
     
     @EJB
     VentasFacadeLocal ventasFacadeLocal;
+    
+    @EJB
+    ProductosFacadeLocal productosFacadeLocal;
     
     private double total;
     private int carritoId = 0;
@@ -97,14 +102,20 @@ public class CarritoCompras implements Serializable {
        return totalUnidades;
    }
    
-   public void limpiarCarrito() {
-        if (this.getCarritoId() != 0) {
-            if (this.getItems().size() > 0) {
-                for (ItemCarrito item : this.getItems()) {
-                    this.remove(item);
-                }
+   public void limpiarCarrito(List<ItemCarrito> items) {
+        for (ItemCarrito item : items) {
+            this.remove(item);
+        }
+   }
+   
+   public boolean validateStock(List<ItemCarrito> items) {
+        for (ItemCarrito itemCarrito : items) {
+            Productos producto = productosFacadeLocal.find(itemCarrito.getProductId().getIdProducto());
+            if (itemCarrito.getCantidad() > producto.getStock()) {
+                return false;
             }
         }
+        return true;
    }
     
     public void remove(ItemCarrito itemCarrito){
@@ -115,14 +126,26 @@ public class CarritoCompras implements Serializable {
         try {
             if (this.getCarritoId() != 0) {
                 if (this.getItems().size() > 0) {
-                    this.getTotal();
-                    ventasFacadeLocal.setVenta(this.getTotalUnidades(), this.getTotal(), numeroCedula);
-                    this.limpiarCarrito();
-                    PrimeFaces.current().executeScript("Swal.fire("
-                            + " 'Orden',"
-                            + " 'creada con exito', "
-                            + " 'success'"
-                            + ")");
+                    boolean validateStock = this.validateStock(this.getItems());
+                    
+                    if (validateStock) {
+                        this.getTotal();
+                        ventasFacadeLocal.setVenta(
+                                this.getTotalUnidades(), this.getTotal(), numeroCedula, this.getItems()
+                        );
+                        this.limpiarCarrito(this.getItems());
+                        PrimeFaces.current().executeScript("Swal.fire("
+                                + " 'Orden',"
+                                + " 'creada con exito', "
+                                + " 'success'"
+                                + ")");
+                    } else {
+                        PrimeFaces.current().executeScript("Swal.fire("
+                                + " 'Orden',"
+                                + " 'No contamos con stock para algunos de los productos', "
+                                + " 'error'"
+                                + ")");
+                    }
                 } else {
                     PrimeFaces.current().executeScript("Swal.fire("
                             + " 'Orden',"
@@ -142,4 +165,3 @@ public class CarritoCompras implements Serializable {
         }
     }
 }
-
